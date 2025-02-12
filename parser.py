@@ -16,14 +16,14 @@ class Parser:
         print(self.infiles)
     
     def findImportMatch(self, data: str) -> str:
-        pattern = r"<import\s+.*?>"
+        pattern = r"<htcompile\s+.*?>"
         match = re.search(pattern, data)
         if match:
             return match.group()
         return ""
     
     def findImportPath(self, fileP: str, imp: str) -> str:
-        pattern = r'<import\s+src="(.*?)"\s*>'
+        pattern = r'<htcompile\s+src="(.*?)"\s*>'
         match = re.search(pattern, imp)
         if match:
             if match.group(1).startswith("/"):
