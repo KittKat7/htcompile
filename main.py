@@ -1,6 +1,3 @@
-import sys
-import os
-from parser import *
 
 """
 Designed to be an easy way to compile a website with import statements.
@@ -10,6 +7,10 @@ Ussage:
 		source is the source directory
 		dest is the output directory
 """
+
+import sys
+import os
+from parser import *
 
 # List of CLI args
 args: list[str] = sys.argv[1:]
@@ -23,18 +24,19 @@ while len(args) > 0:
 	a = args[0]
 	args = args[1:]
 
-	match a:
-		case '-h' | '--help':
-			print("help")
+	# Help flag
+	if (a == '-h' or a == '--help'):
+		print(__doc__)
+		exit()
+	# Others
+	else:
+		if len(srcDir) == 0:
+			srcDir = a
+		elif len(dstDir) == 0:
+			dstDir = a
+		else: 
+			print("Extra param: " + a)
 			exit()
-		case _:
-			if len(srcDir) == 0:
-				srcDir = a
-			elif len(dstDir) == 0:
-				dstDir = a
-			else: 
-				print("Extra param: " + a)
-				exit()
 
 # If not enough params, exit
 if len(srcDir) == 0 or len(dstDir) == 0:
