@@ -50,6 +50,7 @@ The recommended file structure is:
     |  |  |--index.html
     |  |  |--page-a/
     |  |  |  |--index.html
+    |  |  |  |--another.html
     |  |  |--page-b/
     |  |     |--index.html
     |  |--dst/
@@ -58,4 +59,16 @@ The recommended file structure is:
 
 Then running the the program inside `projectdir` would look like this:  
 `$ htcompile ./src ./dst`  
-The generated files will be placed in `./dst`
+The generated files will be placed in `./dst`  
+To utilize htcompile in your HTML, add a
+`<htcompile src="/PATH/TO/FILE/>` Make note that starting the path with
+"/" starts at the path provided as SOURCE to `htcompile`. IE in the file
+structure above using `htcompile ./src ./dst` "/" would represent
+"src/". To import `page-b` into `page-a` you would use
+`<htcompile src="/page-b/index.html">`. On the other hand, "./" is
+treated as relative to the files location, so to import `another.html`
+into `page-a/index.html` you could either use
+`<htcompile src="/page-a/another.html">` or
+`<htcompile src="./another.html">` If you wanted to inport
+`another.html` into `page-b/index.html` you would use
+`<htcompile src="/page-a/another.html">`
