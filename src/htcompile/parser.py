@@ -23,7 +23,7 @@ class Parser:
         return ""
     
     def findImportPath(self, fileP: str, imp: str) -> str:
-        pattern = r'<htcompile\s+src="(.*?)"\s*>'
+        pattern = r'<htcompile\s+src="(.*?)"\s*\\?>'
         match = re.search(pattern, imp)
         if match:
             if match.group(1).startswith("/"):
